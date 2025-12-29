@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ff362c5b17023734e864833d8f4a7495
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 77801
+  packageName: Cube sci-fi
+  packageVersion: 2.0
+  assetPath: Assets/Cube_sci-fi/Materials/wall_white.mat
+  uploadId: 671579

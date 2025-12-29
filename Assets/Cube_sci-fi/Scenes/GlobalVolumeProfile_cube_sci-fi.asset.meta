@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 26a3e9260a5694049800e5968a7544dd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 77801
+  packageName: Cube sci-fi
+  packageVersion: 2.0
+  assetPath: Assets/Cube_sci-fi/Scenes/GlobalVolumeProfile_cube_sci-fi.asset
+  uploadId: 671579

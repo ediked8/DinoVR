@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51a8fad4a68ae134cadc28a1c046d4a2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 77801
+  packageName: Cube sci-fi
+  packageVersion: 2.0
+  assetPath: Assets/Cube_sci-fi/Scenes/Cube_demo/LightingData.asset
+  uploadId: 671579

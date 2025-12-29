@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c1cb3959c82b5dc4cac0b873726c72c1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 77801
+  packageName: Cube sci-fi
+  packageVersion: 2.0
+  assetPath: Assets/Cube_sci-fi/Animations/gates.controller
+  uploadId: 671579

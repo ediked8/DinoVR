@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bd66d677cbf30d249aa3240af9b5bc78
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 77801
+  packageName: Cube sci-fi
+  packageVersion: 2.0
+  assetPath: Assets/Cube_sci-fi/Materials/wall_blue.mat
+  uploadId: 671579
