@@ -131,7 +131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117171571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43faccbbdaab64a4ea44b4c98a79c4c8, type: 3}
   m_Name: 
@@ -144,6 +144,103 @@ MonoBehaviour:
   patrolSpeed: 4
   chaseSpeed: 8
   turnSpeed: 2
+--- !u!1001 &287853964
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 129294, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_Name
+      value: Troodon
+      objectReference: {fileID: 0}
+    - target: {fileID: 129294, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: useAI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: herbivorous
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: lowAltitude
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: canHeadAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: canInvertBody
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: canTailAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: targetEditor.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: targetEditor.Array.data[0].MaxRange
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446846, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: targetEditor.Array.data[0]._GameObject
+      value: 
+      objectReference: {fileID: 468405507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
 --- !u!1001 &302770587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -585,6 +682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pachycephalosaurus
       objectReference: {fileID: 0}
+    - target: {fileID: 105508, guid: 1d6aa9389e6bb0c4cb108309921db15f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 495044, guid: 1d6aa9389e6bb0c4cb108309921db15f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -655,7 +756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11466624, guid: 1d6aa9389e6bb0c4cb108309921db15f, type: 3}
       propertyPath: targetEditor.Array.data[0].MaxRange
-      value: 150
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11466624, guid: 1d6aa9389e6bb0c4cb108309921db15f, type: 3}
       propertyPath: targetEditor.Array.data[0]._GameObject
@@ -1070,6 +1171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dimorphodon
       objectReference: {fileID: 0}
+    - target: {fileID: 123532, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 407996, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -1277,3 +1382,4 @@ SceneRoots:
   - {fileID: 1626745413}
   - {fileID: 1140324255}
   - {fileID: 452862527}
+  - {fileID: 287853964}
