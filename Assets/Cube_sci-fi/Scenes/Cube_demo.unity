@@ -119,6 +119,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &164398868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 682151266246966071}
+    m_Modifications:
+    - target: {fileID: 129294, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_Name
+      value: Troodon
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+--- !u!4 &164398869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 455700, guid: 1d3e5c0e4f69427409dd66c91058b8d8, type: 3}
+  m_PrefabInstance: {fileID: 164398868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +318,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1001 &1067342098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,6 +377,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59fdba479f9536142b56997fff1a2008, type: 3}
+>>>>>>> a279d2dc451bbabc048829c1d9c646d7dccbc315
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,9 +493,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4112283531902534657, guid: 1c030ae0733886b43a0fd2289add9c11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 164398869}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c030ae0733886b43a0fd2289add9c11, type: 3}
+--- !u!4 &682151266246966071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4112283531902534657, guid: 1c030ae0733886b43a0fd2289add9c11, type: 3}
+  m_PrefabInstance: {fileID: 682151266246966070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -438,4 +511,3 @@ SceneRoots:
   - {fileID: 961739753}
   - {fileID: 1160234427}
   - {fileID: 682151266246966070}
-  - {fileID: 1067342098}

@@ -1312,9 +1312,12 @@ public class Creature:MonoBehaviour
 		//Look for a target
 		if(posTGT==Vector3.zero)
 		{
-			if(nextPath>=pathEditor.Count) nextPath=0; //reset path list
-																								 // edited path 
-			if(pathEditor.Count>0&&Random.Range(0,100)<pathEditor[nextPath].priority)
+            if (targetEditor.Count > 0) FindCustomTarget();
+
+            if (nextPath>=pathEditor.Count) nextPath=0; //reset path list
+
+            // edited path 
+            if (pathEditor.Count>0&&Random.Range(0,100)<pathEditor[nextPath].priority)
 			{ objTGT=pathEditor[nextPath].waypoint; posTGT=pathEditor[nextPath].waypoint.transform.position; behavior="ToWaypoint"; behaviorCount=4000; }
 			// look for water
 			else if(canWalk&&Random.Range(0,75)>water) { FindWater(); behaviorCount=4000; }
