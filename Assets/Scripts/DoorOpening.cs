@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TriggerEventController : MonoBehaviour
+public class DoorOpening: MonoBehaviour
 {
     [Header("Targeting")]
     public string targetTag = "Player";
