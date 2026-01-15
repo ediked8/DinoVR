@@ -1,45 +1,46 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace MikeNspired.XRIStarterKit
-{
-    public class SpawnEffect : MonoBehaviour
+public class SpawnEffect : MonoBehaviour {
+
+    public float spawnEffectTime = 2;
+    public float pause = 1;
+    public AnimationCurve fadeIn;
+
+    ParticleSystem ps;
+    float timer = 0;
+    Renderer _renderer;
+
+    int shaderProperty;
+
+	void Start ()
     {
-        public float spawnEffectTime = 2;
-        public float pause = 1;
-        public AnimationCurve fadeIn;
+        shaderProperty = Shader.PropertyToID("_cutoff");
+        _renderer = GetComponent<Renderer>();
+        ps = GetComponentInChildren <ParticleSystem>();
 
-        ParticleSystem ps;
-        float timer = 0;
-        Renderer _renderer;
+        var main = ps.main;
+        main.duration = spawnEffectTime;
 
-        int shaderProperty;
+        ps.Play();
 
-        void Start()
+    }
+	
+	void Update ()
+    {
+        if (timer < spawnEffectTime + pause)
         {
-            shaderProperty = Shader.PropertyToID("_cutoff");
-            _renderer = GetComponent<Renderer>();
-            ps = GetComponentInChildren<ParticleSystem>();
-
-            var main = ps.main;
-            main.duration = spawnEffectTime;
-
+            timer += Time.deltaTime;
+        }
+        else
+        {
             ps.Play();
+            timer = 0;
         }
 
-        void Update()
-        {
-            if (timer < spawnEffectTime + pause)
-            {
-                timer += Time.deltaTime;
-            }
-            else
-            {
-                ps.Play();
-                timer = 0;
-            }
 
-
-            _renderer.material.SetFloat(shaderProperty, fadeIn.Evaluate(Mathf.InverseLerp(0, spawnEffectTime, timer)));
-        }
+        _renderer.material.SetFloat(shaderProperty, fadeIn.Evaluate( Mathf.InverseLerp(0, spawnEffectTime, timer)));
+        
     }
 }
