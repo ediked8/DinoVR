@@ -6987,7 +6987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: FinalScene
-  delayTime: 2.1
+  delayTime: 2.3
   autoStart: 0
 --- !u!54 &242284593
 Rigidbody:
