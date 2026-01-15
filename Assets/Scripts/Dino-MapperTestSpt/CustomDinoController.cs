@@ -36,6 +36,12 @@ public class CustomDinoController : MonoBehaviour
 
         // Dimo(익룡) 땅에 붙이기
         anim.SetBool(ANI_ONGROUND, true);
+
+        // (미리 배치된 공룡 뿐만 아니라, 나중에 소환될 때도 안전하게 처리됨)
+        if (DinoUnlockButton.isGameStarted == false)
+        {
+            moveSpeed = 0f;
+        }
     }
 
     void Update()
