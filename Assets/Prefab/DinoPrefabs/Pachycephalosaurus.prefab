@@ -2171,7 +2171,8 @@ MonoBehaviour:
   moveSpeed: 7
   rotSpeed: 4
   attackRange: 10
-  maxHealth: 100
+  maxHealth: 200
+  distance: 0
 --- !u!1 &5303961533091715037
 GameObject:
   m_ObjectHideFlags: 0
