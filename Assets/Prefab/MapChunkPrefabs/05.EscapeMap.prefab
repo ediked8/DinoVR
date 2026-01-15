@@ -4192,7 +4192,6 @@ GameObject:
   - component: {fileID: 1137672843790876724}
   - component: {fileID: 5566225233841585655}
   - component: {fileID: 4223509368836988663}
-  - component: {fileID: 4069130377789774852}
   - component: {fileID: 9023011922712440291}
   - component: {fileID: 3236257498048557057}
   m_Layer: 8
@@ -4216,6 +4215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6159789707218983820}
+  - {fileID: 1589180179639357553}
   m_Father: {fileID: 7408465295048125212}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!2083052967 &1137672843790876724
@@ -4320,21 +4320,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.69
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4069130377789774852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3176372634482993946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163e7edb33f45644db8300ec09a2e653, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: EndingScene
-  delayTime: 2.3
-  autoStart: 1
 --- !u!114 &9023011922712440291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11238,6 +11223,75 @@ Transform:
   - {fileID: 7174206384464726018}
   m_Father: {fileID: 8133093033646893001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8623038224664540534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589180179639357553}
+  - component: {fileID: 4934606497163647890}
+  - component: {fileID: 1566555316697895691}
+  m_Layer: 8
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1589180179639357553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623038224664540534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4701173, y: 0.4701173, z: 0.4701173}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6826891890523384242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4934606497163647890
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623038224664540534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1566555316697895691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623038224664540534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163e7edb33f45644db8300ec09a2e653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: EndingScene
+  delayTime: 5
+  autoStart: 0
 --- !u!1 &8734239225168595512
 GameObject:
   m_ObjectHideFlags: 0
@@ -12180,19 +12234,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052240120113588671, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 3.9e-44
+      value: -6.919725e-14
       objectReference: {fileID: 0}
     - target: {fileID: 5052240120113588671, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5052240120113588671, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 8.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5052240120113588671, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: -2.0000021
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 7412180122720427599, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
       propertyPath: playOnAwake
