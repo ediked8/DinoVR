@@ -41,7 +41,7 @@ public class GunScript : MonoBehaviour
 
         }
 
-        if (shotCount >= overhit && !isOverheat)
+        if (shotCount >= overhit)
 
         {
 
@@ -54,7 +54,8 @@ public class GunScript : MonoBehaviour
             return;
 
         }
-
+        if (isOverheat)
+            return;
         gunParticle.Play();
 
         Audio.PlayOneShot(gunDic["ShotgunSFX"]);
