@@ -12,39 +12,60 @@ public class SceneChanger : MonoBehaviour
     [Tooltip("몇 초 뒤에 씬을 변경할지 설정하세요.")]
     public float delayTime = 3.0f;
 
+    [Header("Trigger Settings")]
+    [Tooltip("체크하면 트리거(충돌) 시 씬이 변경됩니다.")]
+    public bool useTrigger = true;
+    [Tooltip("트리거를 발동시킬 오브젝트의 태그")]
+    public string targetTag = "Player";
+
     [Tooltip("체크하면 게임 시작 시 자동으로 카운트다운을 시작합니다.")]
-    public bool autoStart = true;
+    public bool autoStart = false; // 트리거용으로 쓸 때는 false가 좋습니다.
+
+    private bool isLoading = false;
 
     void Start()
     {
-        // autoStart가 켜져 있다면 시작하자마자 코루틴 실행
         if (autoStart)
         {
-            StartCoroutine(LoadSceneAfterDelay());
+            TriggerSceneChange();
         }
     }
 
-    // 외부(버튼 등)에서 호출하고 싶다면 이 함수를 연결하세요.
+    // 1. 트리거 진입 시 호출 (새로 추가된 부분)
+    private void OnTriggerEnter(Collider other)
+    {
+        // 이미 로딩 중이거나 트리거 모드가 꺼져있으면 무시
+        if (isLoading || !useTrigger) return;
+
+        // 부딪힌 물체의 태그가 Player일 때만 실행
+        if (other.CompareTag(targetTag))
+        {
+            TriggerSceneChange();
+        }
+    }
+
+    // 2. 외부 호출 및 내부 실행용
     public void TriggerSceneChange()
     {
+        if (isLoading) return;
         StartCoroutine(LoadSceneAfterDelay());
     }
 
     IEnumerator LoadSceneAfterDelay()
     {
+        isLoading = true;
         Debug.Log(delayTime + "초 뒤에 " + nextSceneName + " 씬으로 이동합니다.");
 
-        // 설정한 시간만큼 대기
         yield return new WaitForSeconds(delayTime);
 
-        // 씬 로드 시도
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);
         }
         else
         {
-            Debug.LogError("이동할 씬의 이름(Next Scene Name)이 비어있습니다!");
+            Debug.LogError("이동할 씬의 이름이 비어있습니다!");
+            isLoading = false; // 이름이 비어있어 실패한 경우 다시 시도 가능하게 리셋
         }
     }
 }
