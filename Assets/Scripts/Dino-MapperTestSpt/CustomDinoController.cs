@@ -14,7 +14,7 @@ public class CustomDinoController : MonoBehaviour
     private Animator anim;
     private Transform player;
     private bool isDead = false;
-    private int currentHealth;
+    public int currentHealth;
 
     private readonly string ANI_MOVE = "Move";
     private readonly string ANI_ATTACK = "Attack";

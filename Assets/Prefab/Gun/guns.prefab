@@ -19124,7 +19124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 7060668067916771294}
   gunParticle: {fileID: 3979940173916963272}
-  gunSounds: []
+  gunSounds:
+  - {fileID: 8300000, guid: 6ad9aaa851d51a24f99d3329a221fad0, type: 3}
+  - {fileID: 8300000, guid: 1ed48d2fae9d8ca4fbe8ffc753182ca0, type: 3}
+  - {fileID: 8300000, guid: 9a3a3e51d2c64a04fab402df84c13821, type: 3}
 --- !u!54 &7900727830689451569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19218,7 +19221,19 @@ MonoBehaviour:
       m_Calls: []
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4658411611090900416}
+        m_TargetAssemblyTypeName: GunScript, Assembly-CSharp
+        m_MethodName: ShotLogic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
       m_Calls: []
@@ -19332,7 +19347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4291341789254638386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d6765015c7496d41abb8873e08b5312, type: 3}
   m_Name: 
