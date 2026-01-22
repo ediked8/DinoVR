@@ -9,6 +9,8 @@ public class BaseGun : MonoBehaviour
     public AudioClip[] gunSounds;
     public int damage;
 
+
+
     // 자식들이 각자 알아서 구현해야 할 함수 (virtual)
     public virtual void TryFire()
     {

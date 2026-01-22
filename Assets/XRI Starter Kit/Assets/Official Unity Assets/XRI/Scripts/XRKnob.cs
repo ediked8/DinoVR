@@ -317,9 +317,9 @@ namespace MikeNspired.XRIStarterKit
             else
                 m_ForwardVectorAngles.SetTargetFromVector(localForward);
 
-            // Apply offset to base knob rotation to get new knob rotation
-            var knobRotation = m_BaseKnobRotation - ((m_UpVectorAngles.TotalOffset + m_ForwardVectorAngles.TotalOffset) * m_TwistSensitivity) - m_PositionAngles.TotalOffset;
-
+            // Apply offset to base knob rotation to get new knob rotation 수정
+            //var knobRotation = m_BaseKnobRotation - ((m_UpVectorAngles.TotalOffset + m_ForwardVectorAngles.TotalOffset) * m_TwistSensitivity) - m_PositionAngles.TotalOffset;
+            var knobRotation = m_BaseKnobRotation - (((m_UpVectorAngles.TotalOffset + m_ForwardVectorAngles.TotalOffset) * m_TwistSensitivity) + m_PositionAngles.TotalOffset);
             // Clamp to range
             if (m_ClampedMotion)
                 knobRotation = Mathf.Clamp(knobRotation, m_MinAngle, m_MaxAngle);
@@ -366,7 +366,7 @@ namespace MikeNspired.XRIStarterKit
 
             m_Value = value;
             m_OnValueChange.Invoke(remap(0,1,m_RemapValueMin,m_RemapValueMax,m_Value));
-
+         
             // m_OnValueChange.Invoke(m_Value);
         }
 
@@ -389,8 +389,10 @@ namespace MikeNspired.XRIStarterKit
             if (angleDelta > (max * 0.5f))
                 angleDelta = -(max - angleDelta);
 
-            return angleDelta * angleSign;
+            // return angleDelta * angleSign;
+            return -(angleDelta * angleSign); // 결과값에 마이너스를 붙여서 왼쪽 회전을 정방향으로 인식하게 함 수정
         }
+        
 
         void OnDrawGizmosSelected()
         {
@@ -422,6 +424,15 @@ namespace MikeNspired.XRIStarterKit
                     circleCenter + (Mathf.Cos(endAngle) * circleX + Mathf.Sin(endAngle) * circleY) * m_PositionTrackedRadius);
             }
         }
+        public void ForceDetach()
+        {
+            if (m_Interactor != null && interactionManager != null)
+            {
+                // 현재 이 물체를 선택 중인 인터랙터를 강제로 선택 해제시킵니다.
+                interactionManager.SelectExit(m_Interactor, this);
+            }
+        }
+
 
         void OnValidate()
         {

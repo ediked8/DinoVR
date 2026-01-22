@@ -2,8 +2,10 @@ using MikeNspired.XRIStarterKit;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ChargeSniper : BaseGun
 {
+
     [SerializeField] float maxChargeTime = 2.0f;
     [SerializeField] int maxChargeStack = 2;
     [SerializeField] int currentChargeStack = 0;
@@ -21,6 +23,7 @@ public class ChargeSniper : BaseGun
 
     private void Start()
     {
+        audioSource = GetComponentInChildren<AudioSource>(); 
         damage = 100;
         // 1. 딕셔너리 초기화 (기존 코드 유지)
         gunDic = new Dictionary<string, AudioClip>();
@@ -38,7 +41,7 @@ public class ChargeSniper : BaseGun
 
         // 3. AudioSource 초기 세팅
         audioSource.clip = chargingClip;
-        audioSource.loop = true; // 계속 돌리는 동안 끊기지 않게
+        audioSource.loop = false; // 계속 돌리는 동안 끊기지 않게
         audioSource.playOnAwake = false;
     }
 
@@ -47,27 +50,15 @@ public class ChargeSniper : BaseGun
     {
         currentvalue = knob.Value;
         Debug.Log("레버 작동확인");
-        // 1. 레버를 돌리는 중인지 체크 (값이 변했을 때만 소리 처리)
-        // 값이 0보다 크고, 이전 프레임과 값이 다를 때 소리 재생
-        if (currentvalue > 0.01f && Mathf.Abs(currentvalue - lastKnobValue) > 0.001f)
+      
+        if (currentvalue > 0.01f)
         {
             if (!audioSource.isPlaying && chargingClip != null)
             {
                 audioSource.clip = chargingClip;
                 audioSource.Play();
             }
-
-            // [핵심 로직] Knob Value(0~1)를 오디오 시간(0~Length)에 매핑
-            // Mathf.Lerp(최소시간, 최대시간, 0~1값)
-            audioSource.time = Mathf.Lerp(0, chargingClip.length, currentvalue);
         }
-        else if (currentvalue <= 0.01f)
-        {
-            // 값이 0에 가까우면 소리 멈춤
-            if (audioSource.isPlaying) audioSource.Stop();
-        }
-
-        lastKnobValue = currentvalue; // 마지막 값 갱신
 
         // 2. 차징 완료 (Value가 1 도달)
         if (currentvalue >= 0.99f) // 부동소수점 오차 고려하여 0.99 이상 체크
@@ -83,29 +74,27 @@ public class ChargeSniper : BaseGun
         {
             currentChargeStack++;
             Debug.Log($"차지 스택: {currentChargeStack}");
-            gunParticles[0].Play(); //CharagedVFX
+            gunParticles[1].Play(); //CharagedVFX
 
             // 스택 쌓이는 소리 (딸깍!) - 이건 OneShot으로 겹쳐 들리게
             if (chargeCompleteClip != null)
-                AudioSource.PlayClipAtPoint(chargeCompleteClip, transform.position);
+                audioSource.PlayOneShot(chargingClip);
             else
                 Debug.Log("소리없음");
                 // 임시
         }
         else
         {
-            gunParticles[1].Play();
+            gunParticles[2].gameObject.SetActive(true);
             AudioSource.PlayClipAtPoint(chargeCompleteClip, transform.position);
             Debug.Log("풀차지 상태입니다.");
         }
-
+        
         // 중요: 값 초기화
         knob.Value = 0;
         currentvalue = 0;
 
-        // 오디오도 처음으로 되돌리기 위해 멈춤
-        audioSource.Stop();
-        audioSource.time = 0;
+
     }
 
     public override void TryFire()
@@ -117,8 +106,13 @@ public class ChargeSniper : BaseGun
             //스택에 따른 소리 추가해야함.
             currentChargeStack = 0;
             audioSource.PlayOneShot(gunDic["ChargeShot"]);
-            gunParticles[2].Play();//ShotVFX 실행
-            gunParticles[0].Stop();//ChargedVFX 종료;
+            //ShotVFX 실행
+            gunParticles[0].Play();
+            gunParticles[1].Stop();//ChargedVFX 종료;
+            gunParticles[2].gameObject.SetActive(false);
+            knob.Value = 0;
+            currentvalue = 0;
+            
         }
     }
 

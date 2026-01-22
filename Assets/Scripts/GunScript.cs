@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GunScript : BaseGun
 {
     /*    public AudioSource audioSource;
         public ParticleSystem[] gunParticles; //0 발사 1, 2 과열 
         public AudioClip[] gunSounds;  => 부모 클래스가 담당 */
+
+
+
     Dictionary<string, AudioClip> gunDic;
 
     int shotCount = 0;  
@@ -19,6 +23,8 @@ public class GunScript : BaseGun
 
     private void Start()
     {
+        audioSource = GetComponentInChildren<AudioSource>();
+
         damage = 8;
         // 딕셔너리 초기화
         gunDic = new Dictionary<string, AudioClip>();
