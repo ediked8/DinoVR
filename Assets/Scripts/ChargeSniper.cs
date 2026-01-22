@@ -5,21 +5,28 @@ using UnityEngine;
 
 public class ChargeSniper : BaseGun
 {
-
+    [Header("Charge Settings")]
     [SerializeField] float maxChargeTime = 2.0f;
     [SerializeField] int maxChargeStack = 2;
     [SerializeField] int currentChargeStack = 0;
-    Dictionary<string, AudioClip> gunDic;
+    
 
+    [Header("Damage Settings")]
+    [SerializeField] int damagePerStack = 50; // 스택당 추가 데미지
+    private int currentShotDamage = 0; // 발사 시점에 확정된 데미지를 저장할 변수
+
+    [Header("AudioSetting")]
     // 차징 사운드 클립 별도 저장 (딕셔너리에서 꺼내 쓰기 번거로움 방지)
+    Dictionary<string, AudioClip> gunDic;
     private AudioClip chargingClip;
     private AudioClip chargeCompleteClip;
 
     public XRKnob knob;
     public float currentvalue; // 디버깅용 public
 
-    // 이전에 값이 변했는지 체크하기 위한 변수
-    private float lastKnobValue = -1f;
+    // 파티클 충돌 감지용 리스트 (최적화)
+    private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
+
 
     private void Start()
     {
@@ -103,24 +110,48 @@ public class ChargeSniper : BaseGun
         if (currentChargeStack > 0)
         {
             Debug.Log($"스택 {currentChargeStack} 소모하여 발사!");
-            //스택에 따른 소리 추가해야함.
-            currentChargeStack = 0;
+
+            // 기본 데미지 + (스택 * 추가데미지)
+            currentShotDamage = damage + (currentChargeStack * damagePerStack);
+
             audioSource.PlayOneShot(gunDic["ChargeShot"]);
+            
             //ShotVFX 실행
             gunParticles[0].Play();
-            gunParticles[1].Stop();//ChargedVFX 종료;
+
+            //충전관련 VFX 종료;
+            gunParticles[1].Stop();
             gunParticles[2].gameObject.SetActive(false);
+
+            // 스택 및 레버 초기화
+            currentChargeStack = 0;
             knob.Value = 0;
             currentvalue = 0;
             
         }
     }
 
-    public override void TryDamage(CustomDinoController dino)
+    // [핵심] 파티클이 무언가에 부딪혔을 때 호출됨
+    public override void OnParticleHit(GameObject other, ParticleSystem senderParticle)
     {
-        if (dino != null)
+        // 1. 공룡인지 확인
+        CustomDinoController target = other.GetComponent<CustomDinoController>();
+
+        if (target != null)
         {
-            dino.currentHealth -= damage;
+            // 2. 전달받은 파티클 시스템(senderParticle)을 이용해 충돌 이벤트 가져오기
+            int numCollisionEvents = senderParticle.GetCollisionEvents(other, collisionEvents);
+
+            if (numCollisionEvents > 0)
+            {
+                // 저장해둔 데미지 계산 (발사 시점의 스택 데미지 적용)
+                int totalDamage = numCollisionEvents * currentShotDamage; // 혹은 그냥 damage 변수
+
+                Debug.Log($"파티클 {numCollisionEvents}개 명중! 총 데미지: {totalDamage}");
+
+                // 데미지 적용
+                target.TakeDamage(totalDamage);
+            }
         }
     }
 }

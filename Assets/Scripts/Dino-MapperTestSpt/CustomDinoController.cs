@@ -1,10 +1,11 @@
 using UnityEngine;
-using System.Collections; // ★ 코루틴 사용을 위해 필요
+using System.Collections;
+using UnityEngine.SceneManagement; // ★ 코루틴 사용을 위해 필요
 
 public class CustomDinoController : MonoBehaviour
 {
     [Header("공룡 스펙 설정")]
-    public float moveSpeed = 0f; // ★ 시작 속도를 0으로 설정
+    public float moveSpeed = 2f; // ★ 시작 속도를 0으로 설정
     public float rotSpeed = 2.0f;
     public float attackRange = 2.5f;
     public int maxHealth = 100;
@@ -12,7 +13,7 @@ public class CustomDinoController : MonoBehaviour
 
     // ... (기존 변수 동일)
     private Animator anim;
-    private Transform player;
+    [SerializeField] Transform player;
     private bool isDead = false;
     public int currentHealth;
 
@@ -36,7 +37,7 @@ public class CustomDinoController : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f); // 3초 대기
 
-        moveSpeed = 6.0f; // 속도 변경
+        moveSpeed = 4.0f; // 속도 변경
         Debug.Log($"공룡 활성화: 속도 {moveSpeed}으로 변경됨");
     }
 
@@ -48,14 +49,15 @@ public class CustomDinoController : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
 
-        GameObject p = GameObject.FindWithTag("Player");
-        if (p != null) player = p.transform;
-
+        /*  GameObject p = GameObject.FindWithTag("Player");
+          if (p != null) player = p.transform;
+  */
+        player = GameManager.Instance.player;
         currentHealth = maxHealth;
         anim.SetBool(ANI_ONGROUND, true);
 
         // (미리 배치된 공룡 뿐만 아니라, 나중에 소환될 때도 안전하게 처리됨)
-        if (DinoUnlockButton.isGameStarted == false)
+        if (DinoUnlockButton.isGameStarted == false && SceneManager.GetActiveScene().name == "EndingScene")
         {
             moveSpeed = 0f;
         }

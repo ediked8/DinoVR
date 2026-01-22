@@ -17,8 +17,11 @@ public class BaseGun : MonoBehaviour
         // 빈 껍데기. 자식들이 채워 넣음.
     }
 
-    public virtual void TryDamage(CustomDinoController dino)
+    // [추가] 자식들이 공통으로 쓸 파티클 충돌 함수 정의
+    // virtual 키워드: 자식이 이 내용을 덮어쓸 수 있음(Override)
+    public virtual void OnParticleHit(GameObject other, ParticleSystem senderParticle)
     {
-        // 빈 껍데기. 자식들이 채워 넣음.
+        // 부모는 기본적으로 아무것도 안 하거나, 로그만 찍음
+        // 자식 스크립트에서 이 부분을 override해서 각자의 로직을 짬
     }
 }

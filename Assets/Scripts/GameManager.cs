@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("플레이어 설정")]
     public int maxHealth = 100;
     public int currentHealth;
+    public Transform player;
 
     private void Awake()
     {
