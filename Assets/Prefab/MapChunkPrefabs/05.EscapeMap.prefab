@@ -4194,6 +4194,7 @@ GameObject:
   - component: {fileID: 4223509368836988663}
   - component: {fileID: 9023011922712440291}
   - component: {fileID: 3236257498048557057}
+  - component: {fileID: 1723835380265425848}
   m_Layer: 8
   m_Name: EscapePortal
   m_TagString: Untagged
@@ -4314,7 +4315,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4353,6 +4354,23 @@ PlayableDirector:
     value: {fileID: 6063958230750366265}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1723835380265425848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176372634482993946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163e7edb33f45644db8300ec09a2e653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: EndingScene
+  delayTime: 3
+  useTrigger: 1
+  targetTag: Player
+  autoStart: 0
 --- !u!1 &3223162028415921048
 GameObject:
   m_ObjectHideFlags: 0
@@ -11291,6 +11309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: EndingScene
   delayTime: 5
+  useTrigger: 1
+  targetTag: Player
   autoStart: 0
 --- !u!1 &8734239225168595512
 GameObject:

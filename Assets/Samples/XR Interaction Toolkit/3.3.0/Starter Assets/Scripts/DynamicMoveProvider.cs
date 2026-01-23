@@ -32,7 +32,9 @@ namespace XR.Interaction.Toolkit.Samples
         [Space, Header("소리")]
         public AudioClip[] sfxArray;
         public AudioSource newaudio;
-        
+        public float moveblendtoaudio;
+        float times = 0f;
+
 
 
         [Space, Header("Movement Direction")]
@@ -180,11 +182,21 @@ namespace XR.Interaction.Toolkit.Samples
             // Combine the two poses into the forward source based on the magnitude of input
             var leftHandValue = leftHandMoveInput.ReadValue();
             var rightHandValue = rightHandMoveInput.ReadValue();
-            if(leftHandValue != new Vector2(0,0) && !newaudio.isPlaying)
+
+            float xV = Mathf.Abs(leftHandValue.x);
+            float yV = Mathf.Abs(leftHandValue.y);
+            
+            if ((xV < 0.5 || yV < 0.5) && !newaudio.isPlaying && times < Time.time)
             {
-                //사운드 출력
-                newaudio.PlayOneShot(sfxArray[0]);
-                //Debug.Log()leftHandValue
+                    newaudio.PlayOneShot(sfxArray[Random.Range(0, 2)]);
+                    Debug.Log(leftHandValue);
+                times = Time.time + 0.5f;
+              
+            }
+            if ((xV >= 0.5 || yV >=0.5) && !newaudio.isPlaying)
+            {            
+                    newaudio.PlayOneShot(sfxArray[Random.Range(2, 4)]);
+                    Debug.Log(leftHandValue);
             }
 
 
@@ -192,8 +204,10 @@ namespace XR.Interaction.Toolkit.Samples
             var totalSqrMagnitude = leftHandValue.sqrMagnitude + rightHandValue.sqrMagnitude;
             var leftHandBlend = 0.5f;
             if (totalSqrMagnitude > Mathf.Epsilon)
+            {
                 leftHandBlend = leftHandValue.sqrMagnitude / totalSqrMagnitude;
-
+                moveblendtoaudio = leftHandBlend;
+            }
             var combinedPosition = Vector3.Lerp(m_RightMovementPose.position, m_LeftMovementPose.position, leftHandBlend);
             var combinedRotation = Quaternion.Slerp(m_RightMovementPose.rotation, m_LeftMovementPose.rotation, leftHandBlend);
             m_CombinedTransform.SetPositionAndRotation(combinedPosition, combinedRotation);

@@ -2168,11 +2168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb1a901e370a934f97587c766ec4417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 4
   rotSpeed: 4
   attackRange: 10
   maxHealth: 200
   distance: 0
+  player: {fileID: 0}
+  currentHealth: 0
 --- !u!1 &5303961533091715037
 GameObject:
   m_ObjectHideFlags: 0

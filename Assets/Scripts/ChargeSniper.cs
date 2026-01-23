@@ -2,6 +2,7 @@ using MikeNspired.XRIStarterKit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class ChargeSniper : BaseGun
@@ -25,6 +26,7 @@ public class ChargeSniper : BaseGun
     public XRKnob knob;
     public float currentvalue; // 디버깅용 public
     private bool isLeverReady;
+    public Transform[] Gears;
 
     // 파티클 충돌 감지용 리스트 (최적화)
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
@@ -33,8 +35,9 @@ public class ChargeSniper : BaseGun
     [SerializeField] float returnSpeed = 5.0f; // 되돌아가는 속도
     private bool isGrabbed = false; // 현재 잡고 있는지 여부
     private Coroutine returnRoutine;
+    
 
-
+  
     private void Start()
     {
         audioSource = GetComponentInChildren<AudioSource>(); 
@@ -57,12 +60,32 @@ public class ChargeSniper : BaseGun
         audioSource.clip = chargingClip;
         audioSource.loop = false; // 계속 돌리는 동안 끊기지 않게
         audioSource.playOnAwake = false;
-    }
 
+       
+    }
+    
     // XR Knob의 OnValueChange 이벤트에 연결하세요.
     public void CheckLeverValue()
     {
+        
+
         currentvalue = knob.Value;
+          for(int i = 0; i < Gears.Length; i++ )
+          {
+              // 1. 현재 각도를 오일러(도, Degree) 단위로 가져옵니다.
+              Vector3 currentRot = Gears[i].localEulerAngles;
+              Vector3 currentPos = Gears[i].position;
+              // 2. Y축 각도를 Knob 값에 비례하게 설정합니다.
+              // 예: Knob가 0~1일 때 기어는 0~360도 회전
+              // (더 많이 돌리고 싶으면 360 대신 720, 1080 등을 곱하세요)
+              currentRot.x = currentvalue * 360f;
+
+              // 3. 변경된 각도를 다시 넣어줍니다.
+              Gears[i].localEulerAngles = currentRot;
+              Gears[i].position = currentPos;
+
+          }
+
 
         // 1. 소리 재생 로직 (기존과 동일하되, 너무 작은 값 변화는 무시)
         if (currentvalue > 0.05f)
