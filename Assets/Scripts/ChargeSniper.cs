@@ -1,4 +1,5 @@
 using MikeNspired.XRIStarterKit;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class ChargeSniper : BaseGun
 {
     [Header("Charge Settings")]
     [SerializeField] float maxChargeTime = 2.0f;
-    [SerializeField] int maxChargeStack = 2;
+    [SerializeField] int maxChargeStack = 3;
     [SerializeField] int currentChargeStack = 0;
     
 
@@ -23,9 +24,15 @@ public class ChargeSniper : BaseGun
 
     public XRKnob knob;
     public float currentvalue; // 디버깅용 public
+    private bool isLeverReady;
 
     // 파티클 충돌 감지용 리스트 (최적화)
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
+
+    [Header("Spring Back Settings")]
+    [SerializeField] float returnSpeed = 5.0f; // 되돌아가는 속도
+    private bool isGrabbed = false; // 현재 잡고 있는지 여부
+    private Coroutine returnRoutine;
 
 
     private void Start()
@@ -56,28 +63,36 @@ public class ChargeSniper : BaseGun
     public void CheckLeverValue()
     {
         currentvalue = knob.Value;
-        Debug.Log("레버 작동확인");
-      
-        if (currentvalue > 0.01f)
+
+        // 1. 소리 재생 로직 (기존과 동일하되, 너무 작은 값 변화는 무시)
+        if (currentvalue > 0.05f)
         {
-            if (!audioSource.isPlaying && chargingClip != null)
-            {
-                audioSource.clip = chargingClip;
-                audioSource.Play();
-            }
+            // ... 소리 재생 코드 ...
         }
 
-        // 2. 차징 완료 (Value가 1 도달)
-        if (currentvalue >= 0.99f) // 부동소수점 오차 고려하여 0.99 이상 체크
+        // 2. [핵심 수정] 차징 완료 로직 (Value가 1 도달)
+        // 조건: 값이 0.99 이상이고 + "준비된 상태(isLeverReady)"여야 함
+        if (currentvalue >= 0.95f && isLeverReady)
         {
             CompleteOneStack();
+
+            // [중요] 스택을 쌓았으니, 레버가 돌아올 때까지 잠금!
+            isLeverReady = false;
+        }
+
+        // 3. [추가] 레버 복귀 확인 (재장전 준비)
+        // 레버 값이 거의 0으로 돌아왔을 때 다시 장전 가능하게 풀어줌
+        if (currentvalue <= 0.05f && !isLeverReady)
+        {
+            isLeverReady = true;
+            Debug.Log("레버 복귀 완료 - 재장전 가능");
         }
     }
 
     void CompleteOneStack()
     {
         // 스택 로직
-        if (currentChargeStack < maxChargeStack)
+        if (currentChargeStack < maxChargeStack-1)
         {
             currentChargeStack++;
             Debug.Log($"차지 스택: {currentChargeStack}");
@@ -92,14 +107,15 @@ public class ChargeSniper : BaseGun
         }
         else
         {
+            currentChargeStack++;
             gunParticles[2].gameObject.SetActive(true);
             AudioSource.PlayClipAtPoint(chargeCompleteClip, transform.position);
-            Debug.Log("풀차지 상태입니다.");
+            Debug.Log($"{currentChargeStack}스택 풀차지 상태입니다.");
         }
         
         // 중요: 값 초기화
-        knob.Value = 0;
-        currentvalue = 0;
+        //knob.Value = 0;
+        //currentvalue = 0;
 
 
     }
@@ -153,5 +169,47 @@ public class ChargeSniper : BaseGun
                 target.TakeDamage(totalDamage);
             }
         }
+    }
+
+    public void OnHandleGrab()
+    {
+        isGrabbed = true;
+
+        // 되돌아가는 중이었다면 멈춤 (플레이어가 다시 잡았으므로)
+        if (returnRoutine != null) StopCoroutine(returnRoutine);
+    }
+
+    // Select Exited (놓았을 때) 이벤트에 연결
+    public void OnHandleRelease()
+    {
+        isGrabbed = false;
+
+        // 손을 놓으면 0으로 되돌아가는 코루틴 시작
+        if (gameObject.activeInHierarchy) // 비활성화 상태 에러 방지
+            returnRoutine = StartCoroutine(SpringBackRoutine());
+    }
+
+    // ---------------------------------------------------------
+    // [2] 0으로 부드럽게 되돌리는 코루틴
+    // ---------------------------------------------------------
+    IEnumerator SpringBackRoutine()
+    {
+        // 값이 0보다 큰 동안 계속 실행
+        while (knob.Value > 0.01f)
+        {
+            // 플레이어가 그 사이에 다시 잡았다면 즉시 중단
+            if (isGrabbed) yield break;
+
+            // 값을 부드럽게 0으로 줄임 (Mathf.Lerp)
+            knob.Value = Mathf.Lerp(knob.Value, 0f, Time.deltaTime * returnSpeed);
+
+            // Value가 바뀌었으니 CheckLeverValue 로직이 돌 수 있음
+            // (필요하다면 여기서 수동으로 오디오 처리 등을 할 수도 있음)
+
+            yield return null; // 한 프레임 대기
+        }
+
+        // 확실하게 0으로 마무리
+        knob.Value = 0f;
     }
 }

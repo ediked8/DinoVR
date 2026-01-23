@@ -29,6 +29,11 @@ namespace XR.Interaction.Toolkit.Samples
             /// </summary>
             HandRelative,
         }
+        [Space, Header("소리")]
+        public AudioClip[] sfxArray;
+        public AudioSource newaudio;
+        
+
 
         [Space, Header("Movement Direction")]
         [SerializeField]
@@ -175,6 +180,14 @@ namespace XR.Interaction.Toolkit.Samples
             // Combine the two poses into the forward source based on the magnitude of input
             var leftHandValue = leftHandMoveInput.ReadValue();
             var rightHandValue = rightHandMoveInput.ReadValue();
+            if(leftHandValue != new Vector2(0,0) && !newaudio.isPlaying)
+            {
+                //사운드 출력
+                newaudio.PlayOneShot(sfxArray[0]);
+                //Debug.Log()leftHandValue
+            }
+
+
 
             var totalSqrMagnitude = leftHandValue.sqrMagnitude + rightHandValue.sqrMagnitude;
             var leftHandBlend = 0.5f;

@@ -10552,7 +10552,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692127792}
-  - component: {fileID: 692127793}
   m_Layer: 0
   m_Name: ParticleEffect
   m_TagString: Untagged
@@ -10578,19 +10577,6 @@ Transform:
   - {fileID: 9155905632010636559}
   m_Father: {fileID: 7438803935368191442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &692127793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692127791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3630aa8ee1de245b03770c70f888bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainGunScript: {fileID: 9129063478131568359}
 --- !u!1001 &754397040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17636,6 +17622,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: newaudio
+      value: 
+      objectReference: {fileID: 866717641}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: sfxArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: 'sfxArray.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 613f3d6e8c8eb054eae75f5ed3c00fce, type: 3}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: 'sfxArray.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d89cb46bf8272c24ab8970762a91b37d, type: 3}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: 'sfxArray.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ef285f6a2b4c3874a8b9cf8f7b7df4cd, type: 3}
+    - target: {fileID: 7446478910579270736, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+      propertyPath: 'sfxArray.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 06a4dea0254ec394dbc3dfb19cf0ad91, type: 3}
     - target: {fileID: 7489072490748712440, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -17832,6 +17846,11 @@ PrefabInstance:
 --- !u!1 &866717640 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6884128601387728179, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
+  m_PrefabInstance: {fileID: 866717639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &866717641 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 721159803608751228, guid: 31324bb751cdf8946ad9f5f04221b57f, type: 3}
   m_PrefabInstance: {fileID: 866717639}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &866717642
@@ -51359,6 +51378,7 @@ GameObject:
   - component: {fileID: 7390973761920754541}
   - component: {fileID: 3945877027884491880}
   - component: {fileID: 2341211144840761819}
+  - component: {fileID: 7390973761920754542}
   m_Layer: 0
   m_Name: ShotParticle
   m_TagString: Untagged
@@ -87308,7 +87328,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7535992548337897538}
-  - component: {fileID: 7535992548337897539}
   m_Layer: 0
   m_Name: ParticleEffect
   m_TagString: Untagged
@@ -88353,6 +88372,7 @@ GameObject:
   - component: {fileID: 7725229468952754613}
   - component: {fileID: 276866873810181214}
   - component: {fileID: 167559527732697256}
+  - component: {fileID: 7725229468952754614}
   m_Layer: 0
   m_Name: ShotVFX
   m_TagString: Untagged
@@ -101236,6 +101256,7 @@ MonoBehaviour:
   damagePerStack: 50
   knob: {fileID: 268491126}
   currentvalue: 0
+  returnSpeed: 5
 --- !u!1 &4718485182104355374
 GameObject:
   m_ObjectHideFlags: 0
@@ -113350,10 +113371,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9129063478131568359}
+        m_TargetAssemblyTypeName: ChargeSniper, Assembly-CSharp
+        m_MethodName: OnHandleGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9129063478131568359}
+        m_TargetAssemblyTypeName: ChargeSniper, Assembly-CSharp
+        m_MethodName: OnHandleRelease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -113430,6 +113475,19 @@ Transform:
   - {fileID: 2199580052770321398}
   m_Father: {fileID: 7535992548337897538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &7390973761920754542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742640715751180339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3630aa8ee1de245b03770c70f888bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainGunScript: {fileID: 1545678552124991658}
 --- !u!4 &7392923209358460944
 Transform:
   m_ObjectHideFlags: 0
@@ -113812,19 +113870,6 @@ Transform:
   - {fileID: 7390973761920754541}
   m_Father: {fileID: 4626146153971723362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7535992548337897539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3119254845364925044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3630aa8ee1de245b03770c70f888bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainGunScript: {fileID: 1545678552124991658}
 --- !u!33 &7596813057918781908
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -114106,6 +114151,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692127792}
   m_LocalEulerAnglesHint: {x: 95.85501, y: 0, z: 0}
+--- !u!114 &7725229468952754614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609427668268093080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3630aa8ee1de245b03770c70f888bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainGunScript: {fileID: 9129063478131568359}
 --- !u!114 &7726809088609113158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133902,6 +133960,7 @@ MonoBehaviour:
   damagePerStack: 50
   knob: {fileID: 7381309310210654610}
   currentvalue: 0
+  returnSpeed: 2
 --- !u!65 &9131286040146495662
 BoxCollider:
   m_ObjectHideFlags: 0
