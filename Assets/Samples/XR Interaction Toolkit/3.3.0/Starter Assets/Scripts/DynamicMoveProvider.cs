@@ -29,6 +29,13 @@ namespace XR.Interaction.Toolkit.Samples
             /// </summary>
             HandRelative,
         }
+        [Space, Header("¼Ò¸®")]
+        public AudioClip[] sfxArray;
+        public AudioSource newaudio;
+        public float moveblendtoaudio;
+        float times = 0f;
+
+
 
         [Space, Header("Movement Direction")]
         [SerializeField]
@@ -176,11 +183,31 @@ namespace XR.Interaction.Toolkit.Samples
             var leftHandValue = leftHandMoveInput.ReadValue();
             var rightHandValue = rightHandMoveInput.ReadValue();
 
+            float xV = Mathf.Abs(leftHandValue.x);
+            float yV = Mathf.Abs(leftHandValue.y);
+            
+            if ((xV < 0.5 || yV < 0.5) && !newaudio.isPlaying && times < Time.time)
+            {
+                    newaudio.PlayOneShot(sfxArray[Random.Range(0, 2)]);
+                    Debug.Log(leftHandValue);
+                times = Time.time + 0.5f;
+              
+            }
+            if ((xV >= 0.5 || yV >=0.5) && !newaudio.isPlaying)
+            {            
+                    newaudio.PlayOneShot(sfxArray[Random.Range(2, 4)]);
+                    Debug.Log(leftHandValue);
+            }
+
+
+
             var totalSqrMagnitude = leftHandValue.sqrMagnitude + rightHandValue.sqrMagnitude;
             var leftHandBlend = 0.5f;
             if (totalSqrMagnitude > Mathf.Epsilon)
+            {
                 leftHandBlend = leftHandValue.sqrMagnitude / totalSqrMagnitude;
-
+                moveblendtoaudio = leftHandBlend;
+            }
             var combinedPosition = Vector3.Lerp(m_RightMovementPose.position, m_LeftMovementPose.position, leftHandBlend);
             var combinedRotation = Quaternion.Slerp(m_RightMovementPose.rotation, m_LeftMovementPose.rotation, leftHandBlend);
             m_CombinedTransform.SetPositionAndRotation(combinedPosition, combinedRotation);
